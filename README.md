@@ -1,2 +1,2 @@
 # Spring
-联系Spring基本操作
+练习Spring基本操作
