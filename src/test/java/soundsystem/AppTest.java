@@ -17,10 +17,13 @@ public class AppTest {
   @Autowired
   private CDPlayer player;
 
+  @Autowired
+  private CompactDisc compactDisc;
+
   @Test
   public void testPlay(){
 
-    player.play();
+    compactDisc.play();
   }
 
 }
