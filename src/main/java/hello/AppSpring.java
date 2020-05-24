@@ -17,7 +17,7 @@ public class AppSpring
     {
         System.out.println("ApplicationSpring");
         ApplicationContext context = new ClassPathXmlApplicationContext(
-            "applicationContext.xml");
+            "applicationContext-history.xml");
 
         MessagePrinter printer = context.getBean(MessagePrinter.class);
 

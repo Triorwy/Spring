@@ -11,7 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ApplicationSpring {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationSpring = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassPathXmlApplicationContext applicationSpring = new ClassPathXmlApplicationContext(
+            "applicationContext-history.xml");
 
         CompactDisc bean = applicationSpring.getBean(CompactDisc.class);
         bean.play();

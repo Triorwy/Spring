@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:p="http://www.springframework.org/schema/p"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/util
+  http://www.springframework.org/schema/util/spring-util.xsd">
 
-
-  <context:component-scan base-package="com.spring.demo">
-  </context:component-scan>
-
-
-  <bean id="compactDisc" class="com.spring.demo.xml.service.CompactDisc"/>
-  <bean id="compactDisc2" class="com.spring.demo.xml.service.CompactDisc"/>
-
-<!--  bean元素，描述当前的对象需要有spring容器管理
-    id属性：标识对象，未来在应用程序中可以根据ID获取对象
-    class：被管理对象的类全名
--->
-  <bean id="service" class="hello.MessageService"></bean>
-
-  <bean id="printer" class="hello.MessagePrinter">
-<!--  子节点 printer和service建立联系  -->
-    <property name="messageService" ref="service"></property>
+<!--  set注入-->
+  <bean id="music1" class="com.spring.demo.xml.service.Music">
+    <property name="singer" value="火星人"/>
+    <property name="time" value="290"/>
   </bean>
 
+  <bean id="music2" class="com.spring.demo.xml.service.Music"
+    p:singer="未来的事"
+    p:time="302"
+  />
+
+  <util:list id="trackList">
+    <ref bean="music1"/>
+    <ref bean="music2"/>
+  </util:list>
+
+
+  <bean id="compactDisc1" class="com.spring.demo.xml.service.CompactDisc"
+    p:title="华晨宇的斗牛"
+    p:artist="华晨宇"
+  p:tracks-ref="trackList">
+
+<!--    <property name="tracks">-->
+<!--      <list>-->
+<!--       <ref bean="music1"/>-->
+<!--       <ref bean="music2"/>-->
+<!--      </list>-->
+<!--    </property>-->
+  </bean>
+
+  <bean id="CDPlayer" class="com.spring.demo.xml.service.CDPlatyer">
+    <property name="compactDisc" ref="compactDisc1"/>
+  </bean>
 </beans>
